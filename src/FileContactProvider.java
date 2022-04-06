@@ -12,16 +12,9 @@ public class FileContactProvider implements IContactsProvider{
 
     @Override
     public void add(Contact contact) throws IOException {
-        BufferedReader f_in = new BufferedReader(new FileReader("resources/contacts.txt"));
         PrintWriter f_Out = new PrintWriter(new FileWriter("resources/contacts.txt"));
-        String contactInfo= f_in.readLine();
-        int i=0;
-        while (contactInfo!=null){
-            i++;
-            f_Out.println(i + ".-" + contactInfo);
-            contactInfo=f_in.readLine();
+        String cad=f_Out.readLine() ;
         }
-        f_in.close();
         f_Out.close();
     }
 
