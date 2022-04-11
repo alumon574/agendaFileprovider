@@ -9,12 +9,12 @@ public class Agenda {
     private List<Contact> contacts = new LinkedList<>();
     private IContactsProvider provider;
 
-    public Agenda(IContactsProvider provider) {
+    public Agenda(IContactsProvider provider) throws IOException {
         this.provider = provider;
         refresh();
     }
 
-    private void refresh() {
+    private void refresh() throws IOException {
         contacts = provider.loadContacts();
         contacts.sort(Comparator.comparing(contact -> contact.getName()));
     }
@@ -24,12 +24,12 @@ public class Agenda {
         refresh();
     }
 
-    public void remove(Contact contact) {
+    public void remove(Contact contact) throws IOException {
         provider.remove(contact);
         refresh();
     }
 
-    public void update(Contact contact) {
+    public void update(Contact contact) throws IOException {
         provider.update(contact);
         refresh();
     }

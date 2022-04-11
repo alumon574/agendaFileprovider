@@ -15,7 +15,8 @@ public class Main {
         System.out.println(agenda);*/
         FileContactProvider fileContactProvider=new FileContactProvider();
         Contact contactTest = new Contact(4,"prueba","123456789","calle","mail");
-        fileContactProvider.add(contactTest);
+        Contact contactTest2 = new Contact(4,"segundo","987654321","calle","mail");
+        fileContactProvider.loadContacts();
     }
 
 }
