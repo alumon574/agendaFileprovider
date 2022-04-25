@@ -9,27 +9,27 @@ public class Agenda {
     private List<Contact> contacts = new LinkedList<>();
     private IContactsProvider provider;
 
-    public Agenda(IContactsProvider provider) throws IOException {
+    public Agenda(IContactsProvider provider) {
         this.provider = provider;
         refresh();
     }
 
-    private void refresh() throws IOException {
+    private void refresh() {
         contacts = provider.loadContacts();
         contacts.sort(Comparator.comparing(contact -> contact.getName()));
     }
 
-    public void add(Contact contact) throws IOException {
+    public void add(Contact contact) {
         provider.add(contact);
         refresh();
     }
 
-    public void remove(Contact contact) throws IOException {
+    public void remove(Contact contact) {
         provider.remove(contact);
         refresh();
     }
 
-    public void update(Contact contact) throws IOException {
+    public void update(Contact contact) {
         provider.update(contact);
         refresh();
     }

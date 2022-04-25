@@ -1,32 +1,45 @@
 import java.io.*;
+import java.util.LinkedList;
 import java.util.List;
 
-public class FileContactProvider implements IContactsProvider{
+public class FileContactProvider implements IContactsProvider {
 
     FileReader f_in = null;
     FileWriter f_Out = null;
-    BufferedReader buf_in = null;
+    BufferedWriter buf_out = null;
     String contactInfo;
 
-    @Override
-    public List<Contact> loadContacts() throws IOException {
 
+    @Override
+    public List<Contact> loadContacts() {
+        LinkedList<Contact> contacts = new LinkedList<>();
         File prueba = new File("resources/contacts.txt");
-        buf_in = new BufferedReader(new FileReader(prueba));
-        contactInfo = buf_in.readLine();
-        String contactParts[] = contactInfo.split(";");
-        String contactID = contactParts[0];
-        int contactIDint = Integer.parseInt(contactID);
+        try (BufferedReader buf_in = new BufferedReader(new FileReader(prueba))) {
+            String linea = buf_in.readLine();
+            while (linea != null) {
+                String contactParts[] = linea.split(";");
+                String contactID = contactParts[0];
+                String contactName = contactParts[1];
+                String contactPhonenumber = contactParts[2];
+                String contactAddress = contactParts[3];
+                String contactEmail = contactParts[4];
+                int contactIDint = Integer.parseInt(contactID);
+
+                contacts.add(new Contact(contactIDint, contactName, contactPhonenumber, contactAddress, contactEmail));
+
+                linea = buf_in.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        f_in.close();
-        return null;
+
+        return contacts;
     }
 
     @Override
-    public void add(Contact contact) throws IOException {
-
-
-
+    public void add(Contact contact) {
+        List<Contact> contacts = loadContacts();
+//        buf_out.write(String.valueOf(contact));
     }
 
     @Override
