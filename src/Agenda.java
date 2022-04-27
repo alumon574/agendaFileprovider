@@ -19,7 +19,7 @@ public class Agenda {
         contacts.sort(Comparator.comparing(contact -> contact.getName()));
     }
 
-    public void add(Contact contact) {
+    public void add(Contact contact) throws IOException {
         provider.add(contact);
         refresh();
     }

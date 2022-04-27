@@ -8,16 +8,17 @@ public class FileContactProvider implements IContactsProvider {
     FileWriter f_Out = null;
     BufferedWriter buf_out = null;
     String contactInfo;
+    Agenda agenda;
 
 
     @Override
     public List<Contact> loadContacts() {
         LinkedList<Contact> contacts = new LinkedList<>();
-        File prueba = new File("resources/contacts.txt");
-        try (BufferedReader buf_in = new BufferedReader(new FileReader(prueba))) {
+        File lector = new File("resources/contacts.txt");
+        try (BufferedReader buf_in = new BufferedReader(new FileReader(lector))) {
             String linea = buf_in.readLine();
             while (linea != null) {
-                String contactParts[] = linea.split(";");
+                String[] contactParts = linea.split(";");
                 String contactID = contactParts[0];
                 String contactName = contactParts[1];
                 String contactPhonenumber = contactParts[2];
@@ -36,19 +37,36 @@ public class FileContactProvider implements IContactsProvider {
         return contacts;
     }
 
+    public void save(List<Contact> listaContactos) {
+        int id = 0;
+        try (PrintWriter writer = new PrintWriter(new FileWriter("resources/contacts.txt"))) {
+            for (Contact contact : listaContactos) {
+                writer.write((id++) + ";" + contact.getName() + ";" + contact.getPhoneNumber() + ";" + contact.getAddress() + ";" + contact.getEmail() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void add(Contact contact) {
         List<Contact> contacts = loadContacts();
-//        buf_out.write(String.valueOf(contact));
+        contacts.add(contact);
+        save(contacts);
     }
 
     @Override
     public void remove(Contact contact) {
-
+        List<Contact> contacts = loadContacts();
+        contacts.remove(contact);
+        save(contacts);
     }
 
     @Override
     public void update(Contact contact) {
-
+        List<Contact> contacts = loadContacts();
+        contacts.remove(contact);
+        contacts.add(contact);
+        save(contacts);
     }
 }
