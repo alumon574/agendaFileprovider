@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws ExcepcionPrueba {
 //        Contact contact = new Contact("Pepe", "123456789", "C/Bonita", "pepe@gmail.com");
 //        System.out.println(contact);
 

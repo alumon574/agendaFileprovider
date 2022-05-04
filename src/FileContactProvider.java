@@ -12,7 +12,7 @@ public class FileContactProvider implements IContactsProvider {
 
 
     @Override
-    public List<Contact> loadContacts() {
+    public List<Contact> loadContacts() throws ExcepcionPrueba {
         LinkedList<Contact> contacts = new LinkedList<>();
         File lector = new File("resources/contacts.txt");
         try (BufferedReader buf_in = new BufferedReader(new FileReader(lector))) {
@@ -31,7 +31,7 @@ public class FileContactProvider implements IContactsProvider {
                 linea = buf_in.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+           throw  new  ExcepcionPrueba();
         }
 
         return contacts;
@@ -49,21 +49,21 @@ public class FileContactProvider implements IContactsProvider {
     }
 
     @Override
-    public void add(Contact contact) {
+    public void add(Contact contact) throws ExcepcionPrueba {
         List<Contact> contacts = loadContacts();
         contacts.add(contact);
         save(contacts);
     }
 
     @Override
-    public void remove(Contact contact) {
+    public void remove(Contact contact) throws ExcepcionPrueba {
         List<Contact> contacts = loadContacts();
         contacts.remove(contact);
         save(contacts);
     }
 
     @Override
-    public void update(Contact contact) {
+    public void update(Contact contact) throws ExcepcionPrueba {
         List<Contact> contacts = loadContacts();
         contacts.remove(contact);
         contacts.add(contact);
