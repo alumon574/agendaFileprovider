@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws ExcepcionPrueba {
+    public static void main(String[] args) throws ExcepcionPrueba, IOException {
 //        Contact contact = new Contact("Pepe", "123456789", "C/Bonita", "pepe@gmail.com");
 //        System.out.println(contact);
 
@@ -14,13 +14,16 @@ public class Main {
 //
 //        System.out.println(agenda);
 //        FileContactProvider fileContactProvider=new FileContactProvider();
-//        Contact contactTest = new Contact(4,"prueba","123456789","calle","mail");
+  //      Contact contactTest = new Contact(4,"prueba","123456789","calle","mail");
 //        Contact contactTest2 = new Contact(4,"segundo","987654321","calle","mail");
 //        fileContactProvider.loadContacts();
-        FileContactProvider fileContactProvider=new FileContactProvider();
+//        FileContactProvider fileContactProvider=new FileContactProvider();
         Contact contactPrueba = new Contact(0,"a","numero","calle","correo");
-//        Contact contactPrueba2 = new Contact(1,"b","numero","calle","correo");
-        fileContactProvider.update(contactPrueba);
+        Contact contactPrueba2 = new Contact(1,"b","numero","calle","correo");
+//        fileContactProvider.update(contactPrueba);
+        SerializedContactProvider serializedContactProvider=new SerializedContactProvider();
+        serializedContactProvider.add(contactPrueba);
+        serializedContactProvider.add(contactPrueba2);
 
     }
 
