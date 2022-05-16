@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class JsonDataProvider implements IContactsProvider {
     Gson gson = new Gson();
+    Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 
     public JsonDataProvider() throws IOException {
     }
@@ -31,9 +32,10 @@ public class JsonDataProvider implements IContactsProvider {
 
     public void save(List<Contact> listaContactos) {
         try (FileWriter writer = new FileWriter("./resources/contacts.json")) {
-            String contacts = gson.toJson(listaContactos);
+            String prettyPrinting = prettyGson.toJson(listaContactos);
+            //String contacts = gson.toJson(listaContactos);
 
-            writer.write(contacts);
+            writer.write(prettyPrinting);
         } catch (IOException e) {
             e.printStackTrace();
         }
