@@ -1,4 +1,7 @@
+import com.google.gson.Gson;
+
 import java.io.IOException;
+import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) throws ExcepcionPrueba, IOException {
@@ -21,10 +24,17 @@ public class Main {
         Contact contactPrueba = new Contact(0,"a","numero","calle","correo");
         Contact contactPrueba2 = new Contact(1,"b","numero","calle","correo");
 //        fileContactProvider.update(contactPrueba);
-        SerializedContactProvider serializedContactProvider=new SerializedContactProvider();
-        serializedContactProvider.add(contactPrueba);
-        serializedContactProvider.add(contactPrueba2);
+        //SerializedContactProvider serializedContactProvider=new SerializedContactProvider();
+        //serializedContactProvider.add(contactPrueba);
+       // serializedContactProvider.remove(contactPrueba2);
+//        final Gson gson = new Gson();
+//        final String json = gson.toJson(contactPrueba);
+//        System.out.println(contactPrueba);
+//        final String representacionJSON = gson.toJson(contactPrueba);
+//        System.out.println(representacionJSON);
 
+        JsonDataProvider jsonDataProvider= new JsonDataProvider();
+        jsonDataProvider.add(contactPrueba);
     }
 
 }
