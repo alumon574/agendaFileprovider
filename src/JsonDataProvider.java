@@ -15,7 +15,7 @@ public class JsonDataProvider implements IContactsProvider {
 
     @Override
     public List<Contact> loadContacts() throws ExcepcionPrueba {
-        LinkedList<Contact> contacts = new LinkedList<>();
+        List<Contact> contacts = new LinkedList<>();
         try (FileReader reader = new FileReader("./resources/contacts.json")) {
             Type listContact = new TypeToken<List<Contact>>(){}.getType();
             contacts = gson.fromJson(reader, listContact);

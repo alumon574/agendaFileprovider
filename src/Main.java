@@ -34,7 +34,7 @@ public class Main {
 //        System.out.println(representacionJSON);
 
         JsonDataProvider jsonDataProvider= new JsonDataProvider();
-        jsonDataProvider.add(contactPrueba);
+        jsonDataProvider.add(contactPrueba2);
     }
 
 }
